@@ -8,10 +8,10 @@ Provides: grub-efi-amd64-signed (= 99:999),
           grub-common (= 99:999),
           grub-pc (= 99:999)
 Filename: ./gurb_1_amd64.deb
-Size: 11940
-MD5sum: 2d9ef84a8e32c28b8a4ae8ab1ca5a334
-SHA1: ebe2da00ad0771e3bd91d1c5ef1bce86e51416c2
-SHA256: e4181155a86055660212ed22f4323cdc92d8178269fc5d65c39939bc8d9b2c5f
+Size: 12832
+MD5sum: da627134db21d29faa49f341e0657139
+SHA1: 199b84554c8566c89790935ae0d9273a66ea5a3c
+SHA256: 5bf639414d95dc37e07f18941bce31dba62677ccf6c32c415eb6396b81724099
 Section: misc
 Priority: optional
 Description: Unified Secure Boot setup: systemd-boot under shim, no GRUB
