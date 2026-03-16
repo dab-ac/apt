@@ -183,8 +183,13 @@ h1 {
 
   <div class="install">
     <pre><span class="comment"># add repo key + source</span>
-sudo curl -fsSL https://apt.dab.ac/dab.ac.gpg -o /usr/share/keyrings/dab.ac.gpg
-printf 'Types: deb\nURIs: https://apt.dab.ac\nSuites: ./\nSigned-By: /usr/share/keyrings/dab.ac.gpg\n' | sudo tee /etc/apt/sources.list.d/dab.ac.sources</pre>
+curl -fsSL https://apt.dab.ac/dab.ac.gpg |
+  sudo tee /usr/share/keyrings/dab.ac.gpg > /dev/null
+echo 'Types: deb
+URIs: https://apt.dab.ac
+Suites: ./
+Signed-By: /usr/share/keyrings/dab.ac.gpg' |
+  sudo tee /etc/apt/sources.list.d/dab.ac.sources > /dev/null</pre>
     <button class="copy-btn" onclick="copyInstall(this)" title="Copy">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
@@ -198,8 +203,8 @@ printf 'Types: deb\nURIs: https://apt.dab.ac\nSuites: ./\nSigned-By: /usr/share/
 
 <script>
 function copyInstall(btn) {
-  const text = `sudo curl -fsSL https://apt.dab.ac/dab.ac.gpg -o /usr/share/keyrings/dab.ac.gpg
-printf 'Types: deb\\nURIs: https://apt.dab.ac\\nSuites: ./\\nSigned-By: /usr/share/keyrings/dab.ac.gpg\\n' | sudo tee /etc/apt/sources.list.d/dab.ac.sources`;
+  const pre = btn.closest('.install').querySelector('pre');
+  const text = pre.textContent;
   navigator.clipboard.writeText(text).then(() => {
     btn.classList.add('copied');
     btn.querySelector('svg').innerHTML = '<polyline points="20 6 9 17 4 12"/>';
