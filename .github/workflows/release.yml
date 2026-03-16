@@ -1,0 +1,28 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+jobs:
+  verify-and-deploy:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: DeterminateSystems/nix-installer-action@main
+      - uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Fetch .deb packages
+        run: make fetch
+
+      - name: Verify InRelease signature and Packages hashes
+        run: nix develop --command make verify
+
+      - name: Assemble deploy directory
+        run: nix develop --command make deploy
+
+      - name: Deploy to Cloudflare Workers Static Assets
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

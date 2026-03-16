@@ -1,0 +1,24 @@
+Package: gurb
+Version: 1
+Architecture: amd64
+Maintainer: 🐴 <ubuntu@malo.pw>
+Depends: perl (>= 5.40), sbsigntool, shim-signed, openssl, mokutil, efibootmgr, systemd-boot-efi, dracut, systemd-ukify, util-linux
+Provides: grub-efi-amd64-signed (= 99:999),
+          grub2-common (= 99:999),
+          grub-common (= 99:999),
+          grub-pc (= 99:999)
+Filename: ./gurb_1_amd64.deb
+Size: 11940
+MD5sum: 2d9ef84a8e32c28b8a4ae8ab1ca5a334
+SHA1: ebe2da00ad0771e3bd91d1c5ef1bce86e51416c2
+SHA256: e4181155a86055660212ed22f4323cdc92d8178269fc5d65c39939bc8d9b2c5f
+Section: misc
+Priority: optional
+Description: Unified Secure Boot setup: systemd-boot under shim, no GRUB
+ Installs shimx64.efi and signed systemd-boot to the ESP, manages UKI
+ building via kernel-install + dracut + ukify, and provides the gurb
+ CLI for MOK and signing lifecycle management.
+ .
+ Coexists with GRUB during transition. Once verified, remove GRUB manually:
+ apt purge grub-common grub-efi-amd64-signed grub2-common
+
